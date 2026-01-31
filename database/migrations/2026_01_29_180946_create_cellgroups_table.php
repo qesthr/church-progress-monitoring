@@ -1,4 +1,5 @@
 <?php
+// FILE: database/migrations/2026_01_29_180002_create_cell_groups_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -6,26 +7,33 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('cellgroups', function (Blueprint $table) {
+        Schema::create('cell_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('church_id')->constrained('churches')->cascadeOnDelete();
-            $table->foreignId('leader_id')->constrained('users'); // cell group leader
-
-            $table->string('name'); // cell group name
+            
+            $table->foreignId('church_id')
+                ->constrained('churches')
+                ->cascadeOnDelete();
+            
+            $table->foreignId('leader_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
+            
+            $table->string('name');
             $table->timestamps();
+
+            // One leader per church can only have one cell group
+            $table->unique(['church_id', 'leader_id']);
+            
+            // Indexes
+            $table->index('church_id');
+            $table->index('leader_id');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('cellgroups');
+        Schema::dropIfExists('cell_groups');
     }
 };
