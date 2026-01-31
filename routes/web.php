@@ -13,6 +13,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/pastor', function(){ return "Pastor Dashboard"; });
     Route::get('/dashboard/leader', function(){ return "Leader Dashboard"; });
     Route::get('/dashboard/disciple', function(){ return "Disciple Dashboard"; });
+}); 
 
-require __DIR__.'/auth.php';    
-});
+require __DIR__.'/auth.php';

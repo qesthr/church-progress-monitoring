@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "tailwindcss";
+@import "colors.css";
+@import "custom.css";
+@import "forms.css";
+@import "buttons.css";
+@import "typography.css";
+@import "layout.css";
+@import "animations.css";
+@import "responsive.css";
+
+@theme {
+    /* ...  */
+}

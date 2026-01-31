@@ -12,7 +12,7 @@ class AuthController extends Controller
     // Show login/register page
     public function showLoginRegister()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     // Handle login
